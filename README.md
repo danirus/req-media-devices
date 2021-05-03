@@ -1,3 +1,7 @@
+# req-media-devices
+
+A React.JS sample application using Hooks to create context, state, and reducers.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
