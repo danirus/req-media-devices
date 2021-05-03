@@ -9,6 +9,23 @@ export default function SettingsCam() {
   const { device } = state;
   const { defs } = device;
 
+  const stopCam = React.useCallback((): void => {
+    const velem: any = document.getElementById("cam");
+    if (velem) {
+      const stream = velem.srcObject;
+      if (stream) {
+        (stream as MediaStream)
+          .getTracks()
+          .forEach((track: MediaStreamTrack) => track.stop());
+        velem.srcObject = null;
+      }
+    }
+  }, []);
+
+  React.useEffect(() => {
+    return (): void => stopCam();
+  }, [stopCam]);
+
   React.useEffect(() => {
     if (defs.cam !== undefined) {
       navigator.mediaDevices.getUserMedia({
